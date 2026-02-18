@@ -82,7 +82,7 @@ body {
 
 .work-section {
   position: relative;
-  padding: 12rem 0 8rem;
+  padding: 8rem 0 8rem;
   background-color: #e9e9e9;
 }
 
@@ -91,7 +91,7 @@ body {
   color: black;
   top: 0;
   left: 2rem;
-  font-size: clamp(6rem, 15vw, 14rem);
+  font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -6px;
@@ -102,7 +102,7 @@ body {
   color: black;
   top: 0;
   right: 2rem;
-  font-size: clamp(6rem, 15vw, 14rem);
+  font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -6px;

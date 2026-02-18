@@ -7,7 +7,7 @@ function Work() {
     <section className="work-section">
 
       <div className="work-title">
-        WORK
+        SELECTED WORK
       </div>
       <div className="work-title-date">
         25'
