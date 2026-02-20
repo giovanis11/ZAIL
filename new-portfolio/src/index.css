@@ -1,10 +1,26 @@
 :root {
   --bs-body-font-family: 'Kantumruy Pro', sans-serif;
 }
+html, body {
+  overflow-x: hidden;
+}
+
 
 body {
   margin: 0;
   background-color: #e9e9e9;
+}
+.hero-video-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.hero-video {
+  width: 100%;
+  max-width: 720px;   /* EXACT portfolio-style size */
+  border-radius: 16px;
+  object-fit: cover;
 }
 
 /* Header text */
@@ -15,7 +31,9 @@ body {
 
 /* Headline wrapper */
 .headline-wrapper {
-  padding: 4rem 3rem;
+  width: 100%;
+  padding: 4rem 2vw;      /* small responsive side padding */
+  overflow-x: clip;       /* prevents horizontal scroll from text */
 }
 
 /* Small words */
@@ -23,16 +41,37 @@ body {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   letter-spacing: 3px;
   font-weight: 600;
-  margin-bottom: 1rem;
-  margin-top: 13rem;
+  margin-top: 20vh;        /* more responsive than 13rem */
 }
 
 /* Massive text */
 .headline-main {
   font-weight: 900;
   line-height: 0.85;
-  letter-spacing: -1px;
-  font-size: clamp(3rem, 9vw, 8rem);
+  text-transform: uppercase;
+
+  /* This is the key: big but controlled */
+  font-size: clamp(3.5rem, 12vw, 11rem);
+
+  /* Use responsive letter spacing (vw makes it compress like portfolios) */
+  letter-spacing: -0.4vw;
+
+  /* DON'T force nowrap by default */
+  white-space: normal;
+}
+
+/* Only on large screens keep it in one line like the reference */
+@media (min-width: 992px) {
+  .headline-main {
+    white-space: nowrap;
+  }
+}
+
+/* On small screens reduce compression so it doesn't overflow */
+@media (max-width: 576px) {
+  .headline-main {
+    letter-spacing: -0.2vw;
+  }
 }
 
 /* Image card */
