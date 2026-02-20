@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import portfolioVideo from "../assets/images/me.mp4";
 
 function Hero() {
-  return (
-    <section className="hero-section">
+  const videoRef = useRef(null);
 
-      {/* ================= HEADER ================= */}
+  const handleMouseMove = (e) => {
+    const screenWidth = window.innerWidth;
+
+    // Normalize mouse position (0 → 1)
+    const mouseX = e.clientX / screenWidth;
+
+    // Movement range (increase for stronger effect)
+    const maxMove = 700;
+
+    // Calculate translateX
+    const translateX = (mouseX - 0.5) * maxMove;
+
+    if (videoRef.current) {
+      videoRef.current.style.transform = `
+        translateX(${translateX}px)
+        scale(1.00)
+      `;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.style.transform =
+        "translateX(0px) scale(1)";
+    }
+  };
+
+  return (
+    <section
+      className="hero-section"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+
+      {/* HEADER */}
       <div className="container-fluid pt-4 px-4">
         <div className="row align-items-start">
 
@@ -45,10 +78,10 @@ function Hero() {
         </div>
       </div>
 
-      {/* ================= HERO VIDEO ================= */}
+      {/* INTERACTIVE VIDEO */}
       <div className="hero-video-wrapper">
-
         <video
+          ref={videoRef}
           src={portfolioVideo}
           autoPlay
           loop
@@ -57,10 +90,9 @@ function Hero() {
           preload="auto"
           className="hero-video"
         />
-
       </div>
 
-      {/* ================= HEADLINE ================= */}
+      {/* HEADLINE */}
       <div className="headline-wrapper">
 
         <div className="headline-top d-flex justify-content-between">

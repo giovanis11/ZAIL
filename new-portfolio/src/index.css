@@ -13,14 +13,16 @@ body {
 .hero-video-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 60px;
+  overflow: hidden;
 }
 
 .hero-video {
   width: 100%;
-  max-width: 720px;   /* EXACT portfolio-style size */
-  border-radius: 16px;
-  object-fit: cover;
+  max-width: 720px;
+  border-radius: 18px;
+  transition: transform 0.1s linear;
+  will-change: transform;
 }
 
 /* Header text */
