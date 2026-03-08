@@ -4,14 +4,19 @@ import portfolioVideo from "../assets/images/me.mp4";
 function Hero() {
   const videoRef = useRef(null);
 
+  const canAnimateVideo = () =>
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
   const handleMouseMove = (e) => {
+    if (!canAnimateVideo()) return;
+
     const screenWidth = window.innerWidth;
 
     // Normalize mouse position (0 → 1)
     const mouseX = e.clientX / screenWidth;
 
     // Movement range (increase for stronger effect)
-    const maxMove = 700;
+    const maxMove = 500;
 
     // Calculate translateX
     const translateX = (mouseX - 0.5) * maxMove;
@@ -25,6 +30,8 @@ function Hero() {
   };
 
   const handleMouseLeave = () => {
+    if (!canAnimateVideo()) return;
+
     if (videoRef.current) {
       videoRef.current.style.transform =
         "translateX(0px) scale(1)";
@@ -78,33 +85,31 @@ function Hero() {
         </div>
       </div>
 
-      {/* INTERACTIVE VIDEO */}
-      <div className="hero-video-wrapper">
-        <video
-          ref={videoRef}
-          src={portfolioVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="hero-video"
-        />
-      </div>
-
-      {/* HEADLINE */}
-      <div className="headline-wrapper">
-
-        <div className="headline-top d-flex justify-content-between">
+      <div className="hero-content">
+        <div className="headline-top">
           <span>A</span>
           <span>SERIOUSLY</span>
           <span>GOOD</span>
         </div>
 
-        <div className="headline-main text-center">
-          SOFTWARE ENGINEER
+        {/* INTERACTIVE VIDEO */}
+        <div className="hero-video-wrapper">
+          <video
+            ref={videoRef}
+            src={portfolioVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="hero-video"
+          />
         </div>
 
+        <div className="headline-main">
+          <span>SOFTWARE</span>{" "}
+          <span>ENGINEER</span>
+        </div>
       </div>
 
     </section>

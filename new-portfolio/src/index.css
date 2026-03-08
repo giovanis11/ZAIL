@@ -1,6 +1,15 @@
 :root {
   --bs-body-font-family: 'Kantumruy Pro', sans-serif;
 }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body {
   overflow-x: hidden;
 }
@@ -9,17 +18,18 @@ html, body {
 body {
   margin: 0;
   background-color: #e9e9e9;
+  font-family: 'Kantumruy Pro', sans-serif;
 }
 .hero-video-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 60px;
   overflow: hidden;
+  order: 1;
 }
 
 .hero-video {
-  width: 100%;
-  max-width: 720px;
+  width: min(84vw, 560px);
   border-radius: 18px;
   transition: transform 0.1s linear;
   will-change: transform;
@@ -31,48 +41,52 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Headline wrapper */
-.headline-wrapper {
+/* Hero content */
+.hero-content {
   width: 100%;
-  padding: 4rem 2vw;      /* small responsive side padding */
-  overflow-x: clip;       /* prevents horizontal scroll from text */
+  padding: 4rem clamp(18px, 1.8vw, 30px);
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
 }
 
 /* Small words */
 .headline-top {
+  order: 2;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   letter-spacing: 3px;
   font-weight: 600;
-  margin-top: 20vh;        /* more responsive than 13rem */
+  margin-top: 20vh;
 }
 
 /* Massive text */
 .headline-main {
+  order: 3;
   font-weight: 900;
-  line-height: 0.85;
+  line-height: 0.86;
   text-transform: uppercase;
+  text-align: center;
 
-  /* This is the key: big but controlled */
-  font-size: clamp(3.5rem, 12vw, 11rem);
+  font-size: clamp(2.3rem, 8.6vw, 8.4rem);
 
-  /* Use responsive letter spacing (vw makes it compress like portfolios) */
-  letter-spacing: -0.4vw;
+  letter-spacing: clamp(-1.8px, -0.15vw, -0.5px);
 
-  /* DON'T force nowrap by default */
-  white-space: normal;
+  width: 100%;
+
+  white-space: nowrap;
 }
 
-/* Only on large screens keep it in one line like the reference */
-@media (min-width: 992px) {
-  .headline-main {
-    white-space: nowrap;
-  }
+.headline-main span {
+  display: inline;
 }
 
 /* On small screens reduce compression so it doesn't overflow */
 @media (max-width: 576px) {
   .headline-main {
-    letter-spacing: -0.2vw;
+    letter-spacing: -1px;
   }
 }
 
@@ -86,17 +100,51 @@ body {
 /* Mobile tweaks */
 @media (max-width: 992px) {
 
-  .headline-wrapper {
-    padding: 2rem 1rem;
+  .hero-content {
+    padding: 2rem 14px;
+  }
+
+  .headline-top {
+    order: 1;
+    margin-top: 2.5rem;
+    margin-bottom: 0.9rem;
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    letter-spacing: 1.8px;
+  }
+
+  .hero-video-wrapper {
+    order: 2;
+    margin-top: 0;
   }
 
   .headline-main {
-    font-size: clamp(3rem, 14vw, 6rem);
-    letter-spacing: -2px;
+    order: 3;
+    margin-top: clamp(16vh, 24vh, 28vh);
+    font-size: clamp(3.5rem, 15.2vw, 7rem);
+    line-height: 0.88;
+    letter-spacing: -1px;
+    white-space: normal;
+  }
+
+  .headline-main span {
+    display: block;
   }
 
   .header-text {
     font-size: 1rem;
+  }
+
+  .hero-video {
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hero-video {
+    transform: none !important;
+    transition: none;
   }
 
 }
